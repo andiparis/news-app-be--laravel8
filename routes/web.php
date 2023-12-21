@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Venturo routes
-Route::get('/', [VenturoController::class, 'index']);
-Route::get('/{year}', [VenturoController::class, 'show']);
+// Route::get('/', [VenturoController::class, 'index']);
+// Route::get('/{year}', [VenturoController::class, 'show']);
 
-// Route::get('/', function () {
-//   return view('home');
-// });
+Route::get('/', function () {
+  return view('home');
+});
 
 Route::get('/about', function () {
   return view('about', [

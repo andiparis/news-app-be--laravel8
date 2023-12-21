@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/{year}', [VenturoController::class, 'show']);
 
 Route::get('/', function () {
-  return view('home');
+  return view('home', [
+    'title'   => 'Home',
+  ]);
 });
 
 Route::get('/about', function () {

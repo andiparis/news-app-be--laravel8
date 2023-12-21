@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\LaporanPivotController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\VenturoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Venturo routes
-Route::get('/', [LaporanPivotController::class, 'index']);
-Route::get('/{year?}', [LaporanPivotController::class, 'show']);
+Route::get('/', [VenturoController::class, 'index']);
+Route::get('/{year}', [VenturoController::class, 'show']);
 
 // Route::get('/', function () {
 //   return view('home');

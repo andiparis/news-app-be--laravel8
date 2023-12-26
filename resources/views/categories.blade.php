@@ -2,16 +2,26 @@
 
 @section('container')
 
-<h1 class="mb-5">Post Categories</h1>
+<h1 class="mb-5">{{ $title }}</h1>
 
-@foreach ($categories as $category)
 <article class="mb-4">
   <ul>
+    @isset($categories)
+    @foreach ($categories as $category)
     <li>
       <h2><a href="/category/{{ $category->slug }}">{{ $category->name }}</a></h2>
     </li>
+    @endforeach
+    @endisset
+
+    @isset($authors)
+    @foreach ($authors as $author)
+    <li>
+      <h2><a href="/author/{{ $author->username }}">{{ $author->name }}</a></h2>
+    </li>
+    @endforeach
+    @endisset
   </ul>
 </article>
-@endforeach
 
 @endsection

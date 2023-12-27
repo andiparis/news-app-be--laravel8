@@ -10,15 +10,15 @@ class CategoryController extends Controller
   public function index()
   {
     return view('categories', [
-      'title'       => 'Post Categories',
-      'categories'  => Category::all(),
+      'title'       => 'All Categories',
+      'categories'  => Category::latest()->get(),
     ]);
   }
 
   public function show(Category $category)
   {
-    return view('category', [
-      'title'     => $category->name,
+    return view('posts', [
+      'title'     => "Post Category : $category->name",
       'posts'     => $category->posts,
     ]);
   }

@@ -10,15 +10,15 @@ class UserController extends Controller
   public function index()
   {
     return view('categories', [
-      'title'     => 'Post Users',
+      'title'     => 'All Authors',
       'authors'   => User::latest()->get(),
     ]);
   }
 
   public function show(User $author)
   {
-    return view('category', [
-      'title'     => $author->name,
+    return view('posts', [
+      'title'     => "Post Author : $author->name",
       'posts'     => $author->posts,
     ]);
   }

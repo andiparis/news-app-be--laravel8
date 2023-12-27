@@ -11,6 +11,7 @@ class UserController extends Controller
   {
     return view('categories', [
       'title'     => 'All Authors',
+      'active'    => 'authors',
       'authors'   => User::latest()->get(),
     ]);
   }
@@ -19,6 +20,7 @@ class UserController extends Controller
   {
     return view('posts', [
       'title'     => "Post Author : $author->name",
+      'active'    => 'authors',
       'posts'     => $author->posts->load('category', 'author'),
     ]);
   }

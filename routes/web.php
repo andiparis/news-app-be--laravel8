@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenturoController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 // Venturo routes
 // Route::get('/', [VenturoController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
 
 Route::get('/', function () {
   return view('home', [

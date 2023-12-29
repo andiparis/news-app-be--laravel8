@@ -9,7 +9,7 @@
     @isset($categories)
     @foreach ($categories as $category)
     <div class="col-md-4">
-      <a href="/category/{{ $category->slug }}">
+      <a href="/posts?category={{ $category->slug }}">
         <div class="card bg-dark text-white">
           <img src="https://source.unsplash.com/500x500?{{ $category->name }}" class="card-img">
           <div class="card-img-overlay d-flex align-items-center p-0">
@@ -25,7 +25,7 @@
     @foreach ($authors as $author)
     <ul>
       <li>
-        <h2><a href="/author/{{ $author->username }}">{{ $author->name }}</a></h2>
+        <h2><a href="/posts?author={{ $author->username }}">{{ $author->name }}</a></h2>
       </li>
     </ul>
     @endforeach

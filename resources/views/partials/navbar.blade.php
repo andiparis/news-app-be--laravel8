@@ -7,19 +7,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link {{ ($active === 'home') ? 'active' : '' }}" href="/">Home</a>
+          <a href="/" class="nav-link {{ ($active === 'home') ? 'active' : '' }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === 'about') ? 'active' : '' }}" href="/about">About</a>
+          <a href="/about" class="nav-link {{ ($active === 'about') ? 'active' : '' }}">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === 'posts') ? 'active' : '' }}" href="/posts">Posts</a>
+          <a href="/posts" class="nav-link {{ ($active === 'posts') ? 'active' : '' }}">Posts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === 'categories') ? 'active' : '' }}" href="/categories">Categories</a>
+          <a href="/categories" class="nav-link {{ ($active === 'categories') ? 'active' : '' }}">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ ($active === 'authors') ? 'active' : '' }}" href="/authors">Authors</a>
+          <a href="/authors" class="nav-link {{ ($active === 'authors') ? 'active' : '' }}">Authors</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="/login" class="nav-link {{ ($active === 'login') ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
         </li>
       </ul>
     </div>

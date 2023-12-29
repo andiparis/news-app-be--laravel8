@@ -2,14 +2,14 @@
 
 @section('container')
 <div class="card-body">
-  <form action="" method="get">
+  <form action="/" method="get">
     <div class="row">
       <div class="col-2">
         <div class="form-group">
           <select id="my-select" class="form-control" name="tahun">
             <option value="">Pilih Tahun</option>
-            <option value="2021" selected>2021</option>
-            <option value="2022">2022</option>
+            <option value="2021" <?= request('tahun') == 2021 ? 'selected' : null ?>>2021</option>
+            <option value="2022" <?= request('tahun') == 2022 ? 'selected' : null ?>>2022</option>
           </select>
         </div>
       </div>
@@ -67,13 +67,13 @@
             <?php
             $totals = array_fill(1, 12, 0);
 
-            foreach ($transaksi as $key => $value) {
+            foreach ($transaction as $key => $value) {
               $tanggal = $value['tanggal'];
               $timestamp = strtotime($tanggal);
 
               for ($bulan = 1; $bulan <= 12; $bulan++) {
-                $start_date = strtotime("2021-$bulan-01");
-                $end_date = strtotime("2021-$bulan-" . date('t', strtotime("2021-$bulan-01")));
+                $start_date = strtotime("$year-$bulan-01");
+                $end_date = strtotime("$year-$bulan-" . date('t', strtotime("$year-$bulan-01")));
 
                 if ($timestamp >= $start_date && $timestamp <= $end_date && $menu == $value['menu']) {
                   $totals[$bulan] += $value['total'];

@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="card-body">
-  <form action="{{ url('/') }}" method="get">
+  <form action="/" method="get">
     <div class="row">
       <div class="col-2">
         <div class="form-group">

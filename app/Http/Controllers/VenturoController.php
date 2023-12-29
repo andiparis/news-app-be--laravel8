@@ -14,7 +14,25 @@ class VenturoController extends Controller
    */
   public function index()
   {
-    return view('venturo.index');
+    if (request('tahun')) {
+      $menuResponse = Http::get('http://tes-web.landa.id/intermediate/menu');
+      $transactionResponse = Http::get('http://tes-web.landa.id/intermediate/transaksi?tahun=' . request('tahun'));
+
+      if ($menuResponse->successful() && $transactionResponse->successful()) {
+        $menu = $menuResponse->json();
+        $transaction = $transactionResponse->json();
+
+        return view('venturo.pivotreport', [
+          'year'        => request('tahun'),
+          'menu'        => $menu,
+          'transaction' => $transaction,
+        ]);
+      } else {
+        return response()->json(['error' => 'Failed to fetch data from the API']);
+      }
+    } else {
+      return view('venturo.index');
+    }
   }
 
   /**
@@ -41,29 +59,12 @@ class VenturoController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  int  $year
+   * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($year)
+  public function show($id)
   {
-    if ($year) {
-      $menuResponse = Http::get('http://tes-web.landa.id/intermediate/menu');
-      $transactionResponse = Http::get('http://tes-web.landa.id/intermediate/transaksi?tahun=' . $year);
-
-      if ($menuResponse->successful() && $transactionResponse->successful()) {
-        $menu = $menuResponse->json();
-        $transaction = $transactionResponse->json();
-
-        return view('venturo.pivotreport', [
-          'menu'        => $menu,
-          'transaction' => $transaction,
-        ]);
-      } else {
-        return response()->json(['error' => 'Failed to fetch data from the API']);
-      }
-    } else {
-      return view('venturo.index');
-    }
+    // 
   }
 
   /**

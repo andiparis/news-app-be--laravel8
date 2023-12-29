@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 // Venturo routes
 // Route::get('/', [VenturoController::class, 'index']);
-// Route::get('/{year}', [VenturoController::class, 'show']);
 
 Route::get('/', function () {
   return view('home', [
@@ -43,7 +42,5 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/post/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
 
 Route::get('/authors', [UserController::class, 'index']);
-Route::get('/author/{author:username}', [UserController::class, 'show']);

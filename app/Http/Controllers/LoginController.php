@@ -30,4 +30,14 @@ class LoginController extends Controller
 
     return back()->with('error', 'Login failed! Please check email & password');
   }
+
+  public function logout(Request $request)
+  {
+    Auth::logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+  }
 }

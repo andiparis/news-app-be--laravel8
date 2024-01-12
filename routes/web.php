@@ -37,8 +37,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
-
+Route::get('/dashboard', function () {
+  return view('dashboard.index');
+})->middleware('auth');
 
 Route::get('/about', function () {
   return view('about', [

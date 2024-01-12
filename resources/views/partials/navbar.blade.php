@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="/" class="nav-link {{ ($active === 'home') ? 'active' : '' }}">Home</a>
+          <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
         </li>
         <li class="nav-item">
-          <a href="/about" class="nav-link {{ ($active === 'about') ? 'active' : '' }}">About</a>
+          <a href="/about" class="nav-link {{ Request::is('about') ? 'active' : '' }}">About</a>
         </li>
         <li class="nav-item">
-          <a href="/posts" class="nav-link {{ ($active === 'posts') ? 'active' : '' }}">Posts</a>
+          <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">Posts</a>
         </li>
         <li class="nav-item">
-          <a href="/categories" class="nav-link {{ ($active === 'categories') ? 'active' : '' }}">Categories</a>
+          <a href="/categories" class="nav-link {{ Request::is('categories') ? 'active' : '' }}">Categories</a>
         </li>
         <li class="nav-item">
-          <a href="/authors" class="nav-link {{ ($active === 'authors') ? 'active' : '' }}">Authors</a>
+          <a href="/authors" class="nav-link {{ Request::is('authors') ? 'active' : '' }}">Authors</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">

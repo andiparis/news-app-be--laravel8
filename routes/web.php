@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
   return view('home', [
     'title'   => 'Home',
-    'active'  => 'home',
   ]);
 });
 
@@ -46,7 +45,6 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 Route::get('/about', function () {
   return view('about', [
     'title'     => 'About',
-    'active'    => 'about',
     'name'      => 'Andi Paris Bachtiar',
     'telp'      => '081539473834',
     'email'     => 'andiparis02@gmail.com',

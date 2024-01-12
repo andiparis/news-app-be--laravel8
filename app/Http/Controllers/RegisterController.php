@@ -12,7 +12,6 @@ class RegisterController extends Controller
   {
     return view('auth.register.index', [
       'title'   => 'Register',
-      'active'  => 'register',
     ]);
   }
 

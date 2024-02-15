@@ -6,11 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Laravel Blog | Dashboard</title>
 
+  <!-- Bootstrap 5.3.2 -->
   <link rel="stylesheet" href="/bootstrap-5.3.2/css/bootstrap.min.css">
 
   <!-- Custom styles for this template -->
   <link href="/css/dashboard.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Trix editor -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
 
   <style>
     .bd-placeholder-img {
@@ -89,6 +93,10 @@
     .bd-mode-toggle .dropdown-menu .active .bi {
       display: block !important;
     }
+
+    trix-toolbar [data-trix-button-group="file-tools"] {
+      display: none;
+    }
   </style>
 </head>
 
@@ -122,8 +130,14 @@
     </div>
   </div>
 
+  <!-- Bootstrap 5.3.2 -->
   <script src="/bootstrap-5.3.2/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom js -->
   <script src="/js/dashboard.js"></script>
+
+  <!-- Trix editor -->
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 </body>
 
 </html>

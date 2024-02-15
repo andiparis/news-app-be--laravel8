@@ -20,9 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Venturo routes
-// Route::get('/', [VenturoController::class, 'index']);
-
 Route::get('/', function () {
   return view('home', [
     'title'   => 'Home',

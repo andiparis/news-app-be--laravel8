@@ -10,24 +10,41 @@
     @csrf
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
-      <input type="text" name="title" id="title" class="form-control">
+      <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required autofocus>
+      @error('title')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <div class="mb-3">
       <label for="slug" class="form-label">Slug</label>
-      <input type="text" name="slug" id="slug" class="form-control">
+      <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}" required>
+      @error('slug')
+      <div class="invalid-feedback">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">Category</label>
-      <select name="category_id" id="category" class="form-select">
+      <select name="category_id" id="category" class="form-select" required>
         @foreach ($categories as $category)
+        @if (old('category_id') == $category->id)
+        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+        @else
         <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endif
         @endforeach
       </select>
     </div>
     <div class="mb-3">
       <label for="body" class="form-label">Body</label>
-      <input type="hidden" name="body" id="body">
+      <input type="hidden" name="body" id="body" value="{{ old('body') }}">
       <trix-editor input="body"></trix-editor>
+      @error('body')
+      <p class="text-danger">{{ $message }}</p>
+      @enderror
     </div>
     <button type="submit" class="btn btn-primary">Create Post</button>
   </form>

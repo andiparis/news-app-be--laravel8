@@ -7,13 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="/about" class="nav-link {{ Request::is('about') ? 'active' : '' }}">About</a>
-        </li>
-        <li class="nav-item">
-          <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">Posts</a>
+          <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">Blogs</a>
         </li>
         <li class="nav-item">
           <a href="/categories" class="nav-link {{ Request::is('categories') ? 'active' : '' }}">Categories</a>
@@ -24,33 +18,33 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         @auth
-        <li class="nav-item dropdown">
-          <a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Welcome back, {{ auth()->user()->name }}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a href="/dashboard" class="dropdown-item">
-                <i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="dropdown-item">
-                  <i class="bi bi-box-arrow-right"></i> Logout
-                </button>
-              </form>
-            </li>
-          </ul>
-        </li>
+          <li class="nav-item dropdown">
+            <a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Welcome back, {{ auth()->user()->name }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a href="/dashboard" class="dropdown-item">
+                  <i class="bi bi-layout-text-sidebar-reverse"></i> My Dashboard
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <form action="/logout" method="post">
+                  @csrf
+                  <button type="submit" class="dropdown-item">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </li>
         @else
-        <li class="nav-item">
-          <a href="/login" class="nav-link {{ Request::is('login') ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
-        </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link {{ Request::is('login') ? 'active' : '' }}"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+          </li>
         @endauth
       </ul>
     </div>

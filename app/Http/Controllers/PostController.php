@@ -22,7 +22,7 @@ class PostController extends Controller
       $title = ' in ' . $author->name;
     }
 
-    return view('posts', [
+    return view('post.posts', [
       'title'     => 'All Posts' . $title,
       'posts'     => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
     ]);
@@ -30,7 +30,7 @@ class PostController extends Controller
 
   public function show(Post $post)
   {
-    return view('post', [
+    return view('post.post', [
       'title'     => 'Post',
       'post'      => $post,
     ]);

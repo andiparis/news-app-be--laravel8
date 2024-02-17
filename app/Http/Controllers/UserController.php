@@ -9,7 +9,7 @@ class UserController extends Controller
 {
   public function index()
   {
-    return view('categories', [
+    return view('category.categories', [
       'title'     => 'All Authors',
       'authors'   => User::latest()->get(),
     ]);
@@ -17,7 +17,7 @@ class UserController extends Controller
 
   public function show(User $author)
   {
-    return view('posts', [
+    return view('post.posts', [
       'title'     => "Post Author : $author->name",
       'posts'     => $author->posts->load('category', 'author'),
     ]);

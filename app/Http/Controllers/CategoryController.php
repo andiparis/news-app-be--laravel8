@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
   public function index()
   {
-    return view('categories', [
+    return view('category.categories', [
       'title'       => 'All Categories',
       'categories'  => Category::latest()->get(),
     ]);
@@ -17,7 +17,7 @@ class CategoryController extends Controller
 
   public function show(Category $category)
   {
-    return view('posts', [
+    return view('post.posts', [
       'title'     => "Post Category : $category->name",
       'posts'     => $category->posts->load('category', 'author'),
     ]);

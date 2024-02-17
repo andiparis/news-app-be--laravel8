@@ -20,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('home', [
-    'title'   => 'Home',
-  ]);
-});
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/authors', [UserController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -39,20 +41,3 @@ Route::get('/dashboard', function () {
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-
-Route::get('/about', function () {
-  return view('about', [
-    'title'     => 'About',
-    'name'      => 'Andi Paris Bachtiar',
-    'telp'      => '081539473834',
-    'email'     => 'andiparis02@gmail.com',
-    'linkedin'  => 'https://www.linkedin.com/in/andi-paris-bachtiar',
-  ]);
-});
-
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/post/{post:slug}', [PostController::class, 'show']);
-
-Route::get('/categories', [CategoryController::class, 'index']);
-
-Route::get('/authors', [UserController::class, 'index']);

@@ -10,8 +10,13 @@
         By <a href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
         in <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
       </p>
+      @if ($post->image)
+      <div style="max-height: 400px; overflow: hidden;">
+        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid">
+      </div>
+      @else
       <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="img-fluid">
-
+      @endif
       <article class="my-3 fs-5">
         {!! $post->body !!}
       </article>

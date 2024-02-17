@@ -32,8 +32,12 @@
         <td>{{ $post->category->name }}</td>
         <td>
           <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info">Show</a>
-          <a href="" class="badge bg-danger">Edit</a>
-          <a href="" class="badge bg-warning">Delete</a>
+          <a href="" class="badge bg-warning">Edit</a>
+          <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+            @method('delete')
+            @csrf
+            <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Are you sure to delete this post?')">Delete</button>
+          </form>
         </td>
       </tr>
       @endforeach

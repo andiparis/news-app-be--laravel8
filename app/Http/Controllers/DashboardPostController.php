@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RedirectController;
 use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
@@ -101,7 +102,8 @@ class DashboardPostController extends Controller
    */
   public function destroy(Post $post)
   {
-    //
+    Post::destroy($post->id);
+    return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
   }
 
   public function checkSlug(Request $request)

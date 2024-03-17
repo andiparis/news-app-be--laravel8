@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/admin/news', [DashboardNewsController::class, 'index']);
+Route::post('/admin/news', [DashboardNewsController::class, 'store']);
+Route::put('/admin/news', [DashboardNewsController::class, 'update']);
+Route::delete('/admin/news', [DashboardNewsController::class, 'destroy']);

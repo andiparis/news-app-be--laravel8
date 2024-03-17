@@ -80,8 +80,6 @@ class DashboardNewsController extends Controller
         'body'        => $request->body,
       ]);
 
-      return response()->json($news);
-
       return (new DataResource('success', 'New news has been saved', $news))
         ->response()
         ->setStatusCode(201);
@@ -95,36 +93,101 @@ class DashboardNewsController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\News  $news
-   * @return \Illuminate\Http\Response
-   */
-  public function show(News $news)
-  {
-    // 
-  }
-
-  /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\News  $news
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, News $news)
+  public function update(Request $request)
   {
-    //
+    try {
+      if (!request('id')) {
+        return response()->json([
+          'status'  => 'fail',
+          'message' => 'Please add news id in the url',
+        ], 404);
+      }
+
+      $news = News::find(request('id'));
+
+      if (!$news) {
+        return response()->json([
+          'status'  => 'fail',
+          'message' => 'News with requested id is not found',
+        ], 404);
+      }
+
+      $validation = Validator::make($request->all(), [
+        'category_id' => 'required',
+        'title'       => 'required|max:255',
+        'slug'        => 'required|unique:news',
+        'body'        => 'required',
+      ]);
+
+      if ($validation->fails()) {
+        return response()->json([
+          'status'  => 'fail',
+          'message' => $validation->errors(),
+        ], 422);
+      }
+
+      $excerpt = Str::limit(strip_tags($request->body), 200);
+
+      $news->update([
+        'category_id' => $request->category_id,
+        'title'       => $request->title,
+        'slug'        => $request->slug,
+        'excerpt'     => $excerpt,
+        'body'        => $request->body,
+      ]);
+
+      return (new DataResource('success', 'Selected news has been updated', $news))
+        ->response()
+        ->setStatusCode(202);
+    } catch (\Exception $e) {
+      return response()->json([
+        'status'  => 'fail',
+        'message' => 'Internal server error',
+        'error'   => $e,
+      ], 500);
+    }
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\News  $news
    * @return \Illuminate\Http\Response
    */
-  public function destroy(News $news)
+  public function destroy()
   {
-    //
+    try {
+      if (!request('id')) {
+        return response()->json([
+          'status'  => 'fail',
+          'message' => 'Please add news id in the url',
+        ], 404);
+      }
+
+      $news = News::find(request('id'));
+
+      if (!$news) {
+        return response()->json([
+          'status'  => 'fail',
+          'message' => 'News with requested id is not found',
+        ], 404);
+      }
+
+      $news->delete();
+
+      return (new DataResource('success', 'Selected news has been deleted', ''))
+        ->response()
+        ->setStatusCode(202);
+    } catch (\Exception $e) {
+      return response()->json([
+        'status'  => 'fail',
+        'message' => 'Internal server error',
+        'error'   => $e,
+      ], 500);
+    }
   }
 }
